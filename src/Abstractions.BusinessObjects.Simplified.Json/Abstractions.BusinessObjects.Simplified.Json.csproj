@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>DevOps.Abstractions.BusinessObjects.Simplified.Json</AssemblyName>
+    <RootNamespace>DevOps.Abstractions.BusinessObjects.Simplified.Json</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Contains Json file services for simplified BusinessObject abstractions for DevOps automation</Description>
+    <Authors>Chris Dorst</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abstractions.BusinessObjects.Simplified\Abstractions.BusinessObjects.Simplified.csproj" />
+  </ItemGroup>
+
+</Project>

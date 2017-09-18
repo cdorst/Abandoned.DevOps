@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>DevOps.Abstractions.SourceCode.Solutions</AssemblyName>
+    <RootNamespace>DevOps.Abstractions.SourceCode.Solutions</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Contains .sln solution source code abstractions for DevOps automation</Description>
+    <Authors>Chris Dorst</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abstractions.SourceCode\Abstractions.SourceCode.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>DevOps.Abstractions.Platforms.AspNetCore</AssemblyName>
+    <RootNamespace>DevOps.Abstractions.Platforms.AspNetCore</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Contains abstractions for an AspNetCore server application</Description>
+    <Authors>Chris Dorst</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0-preview2-final" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Views/**/*.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abstractions.Core\Abstractions.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TagHelpers\" />
+    <Folder Include="ViewComponents\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>DevOps.Abstractions.BusinessObjects.Simplified</AssemblyName>
+    <RootNamespace>DevOps.Abstractions.BusinessObjects.Simplified</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Contains simplified BusinessObject abstractions for DevOps automation</Description>
+    <Authors>Chris Dorst</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abstractions.BusinessObjects\Abstractions.BusinessObjects.csproj" />
+  </ItemGroup>
+
+</Project>
