@@ -7,6 +7,8 @@ In short, this enables authoring declarative templates for building web applicat
 
 ## Projects
 
+See below for projects contained in this repository. Click on project name to navigate to project README file.
+
 Project | Purpose | Depends on
 --------|--------
 Abstractions.Core | Contains generic services (mostly related to interacting with EntityFramework DbContext entities).  | 
@@ -19,3 +21,29 @@ Abstractions.SourceCode.Solutions | Adds abstractions generating for Visual Stud
 Abstractions.SourceCode.TypeDeclarations | Adds abstractions for generating C# .cs type declarations. | Abstractions.SourceCode.Solutions
 Abstractions.SourceCode.VueJs | Adds abstractions for generating Vue JS .vue component declarations | Abstractions.SourceCode.TypeDeclarations
 Abstractions.Platforms.AspNetCore | Contains abstractions for generating ASP.NET Core server applications. | Abstractions.Core
+
+## Output
+
+Given that this is a work-in-progress, the outputs listed below may not reflect the current working state of the DevOps automation tooling, but rather provide a goal of what this tooling should be able to create:
+- Project / Team on Visual Studio Team Services (VSTS)
+- Git Repository on VSTS
+- VSTS Build definition
+- VSTS Release definition
+- ASP.NET Core server application
+- API endpoints for resources (within server application)
+- EntityFramework Core database context w/ migrations (within server application)
+- Client-side Vue component app (w/ Webpack served from server app)
+- Automated test code (invoked from VSTS Build & Release)
+- C# client SDK for interacting with API resources
+- NuGet package(s) for client SDK
+
+### Future outputs
+
+Once the DevOps tooling is capable of producing the above outputs, the ability to produce the following outputs should be integrated into the tooling:
+- Universal Windows Platform app
+- Xamarin.Forms app
+- TV / Watch apps
+
+Each of the above is an alterative front-end experience to the Vue JS progressive web application. With .NET Standard, these platforms can share a data access layer that consumes the client SDK which interacts with the ASP.NET Core web API resources.
+
+Additionally, it may be desirable to generate GraphQL server & client code, Power BI reports & dashboards, etc.
