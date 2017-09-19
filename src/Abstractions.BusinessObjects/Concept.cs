@@ -12,7 +12,7 @@ namespace DevOps.Abstractions.BusinessObjects
     {
         [Key]
         [ProtoMember(1)]
-        public int ConceptId { get; set; }        
+        public int ConceptId { get; set; }
         [ProtoMember(2)]
         public AsciiStringReference Name { get; set; }
         [ProtoMember(3)]
