@@ -10,7 +10,7 @@ In short, this enables authoring declarative templates for building web applicat
 See below for projects contained in this repository. Click on project name to navigate to project README file.
 
 Project | Purpose | Depends on
---------|--------
+------- | ------- | -------
 Abstractions.Core | Contains generic services (mostly related to interacting with EntityFramework DbContext entities).  | 
 Abstractions.UniqueStrings | Provides a simple DbContext for storing string values uniquely. Useful for composing a normalized, relational database DbContext. | Abstractions.Core
 Abstractions.BusinessObjects | Entities and DbContext for storing 'business object' schema as data. Useful for generating source code, work items, or any other DevOps assets based on this schema data. | Abstractions.UniqueStrings
