@@ -1,5 +1,4 @@
 ﻿using DevOps.Abstractions.UniqueStrings;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
@@ -22,7 +21,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public Identifier Identifier { get; set; }
         [ProtoMember(3)]
         public int IdentifierId { get; set; }
-        
+
         [ProtoMember(4)]
         public Identifier Value { get; set; }
         [ProtoMember(5)]

@@ -1,0 +1,25 @@
+﻿using ProtoBuf;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DevOps.Abstractions.SourceCode.TypeDeclarations
+{
+    [ProtoContract]
+    [Table("StatementListAssociations", Schema = nameof(SourceCode))]
+    public class StatementListAssociation
+    {
+        [Key]
+        [ProtoMember(1)]
+        public int StatementListAssociationId { get; set; }
+
+        [ProtoMember(2)]
+        public Statement Statement { get; set; }
+        [ProtoMember(3)]
+        public int StatementId { get; set; }
+
+        [ProtoMember(4)]
+        public StatementList StatementList { get; set; }
+        [ProtoMember(5)]
+        public int StatementListId { get; set; }
+    }
+}

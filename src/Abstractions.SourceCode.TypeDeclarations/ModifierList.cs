@@ -1,0 +1,69 @@
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using ProtoBuf;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+
+namespace DevOps.Abstractions.SourceCode.TypeDeclarations
+{
+    [ProtoContract]
+    [Table("ModifierLists", Schema = nameof(SourceCode))]
+    public class ModifierList
+    {
+        [Key]
+        [ProtoMember(1)]
+        public int ModifierListId { get; set; }
+
+        [ProtoMember(2)]
+        public List<ModifierListAssociation> ModifierListAssociations { get; set; }
+
+        public SyntaxTokenList GetSyntaxTokenList(DocumentationCommentList documentationCommentList = null)
+        {
+            if (documentationCommentList == null)
+            {
+                return TokenList(
+                    GetSyntaxTokensSorted().Select(s => s.GetToken()));
+            }
+            var sorted = GetSyntaxTokensSorted();
+            var count = sorted.Count();
+            var list = new List<Microsoft.CodeAnalysis.SyntaxToken>();
+            for (int i = 0; i < count; i++)
+            {
+                if (i == 0)
+                {
+                    list.Add(sorted[i].GetToken(documentationCommentList));
+                    continue;
+                }
+                list.Add(sorted[i].GetToken());
+            }
+            return TokenList(list);
+        }
+
+        public List<SyntaxToken> GetSyntaxTokensSorted()
+            => ModifierListAssociations
+                .Select(m => m.SyntaxToken)
+                .OrderBy(m => Rank(m.SyntaxKind))
+                .ToList();
+
+        private int Rank(SyntaxKind modifier)
+            => modifier == SyntaxKind.PublicKeyword ? 0
+            : modifier == SyntaxKind.ProtectedKeyword ? 1
+            : modifier == SyntaxKind.InternalKeyword ? 2
+            : modifier == SyntaxKind.PrivateKeyword ? 3
+            : modifier == SyntaxKind.NewKeyword ? 4
+            : modifier == SyntaxKind.AbstractKeyword ? 5
+            : modifier == SyntaxKind.VirtualKeyword ? 6
+            : modifier == SyntaxKind.OverrideKeyword ? 7
+            : modifier == SyntaxKind.SealedKeyword ? 8
+            : modifier == SyntaxKind.StaticKeyword ? 9
+            : modifier == SyntaxKind.ReadOnlyKeyword ? 10
+            : modifier == SyntaxKind.ExternKeyword ? 11
+            : modifier == SyntaxKind.UnsafeKeyword ? 12
+            : modifier == SyntaxKind.VolatileKeyword ? 13
+            : modifier == SyntaxKind.AsyncKeyword ? 14
+            : 15;
+    }
+}

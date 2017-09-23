@@ -13,12 +13,12 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         [Key]
         [ProtoMember(1)]
         public int AttributeID { get; set; }
-        
+
         [ProtoMember(2)]
         public Identifier Identifier { get; set; }
         [ProtoMember(3)]
         public int IdentifierId { get; set; }
-        
+
         [ProtoMember(4)]
         public AttributeArgumentListExpression AttributeArgumentListExpression { get; set; }
         [ProtoMember(5)]

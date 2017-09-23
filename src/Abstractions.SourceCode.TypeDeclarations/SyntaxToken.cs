@@ -17,7 +17,14 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         [ProtoMember(2)]
         public SyntaxKind SyntaxKind { get; set; }
 
-        public Microsoft.CodeAnalysis.SyntaxToken GetToken()
-            => Token(SyntaxKind);
+        public Microsoft.CodeAnalysis.SyntaxToken GetToken(DocumentationCommentList documentationCommentList = null)
+            => documentationCommentList == null
+            ? Token(SyntaxKind)
+            : Token(
+                TriviaList(
+                    Trivia(
+                        documentationCommentList.GetDocumentationCommentTriviaSyntax())),
+                SyntaxKind,
+                TriviaList());
     }
 }

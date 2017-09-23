@@ -1,7 +1,12 @@
-﻿using ProtoBuf;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using ProtoBuf;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
@@ -15,5 +20,33 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 
         [ProtoMember(2)]
         public List<TypeArgumentListAssociation> TypeArgumentListAssociations { get; set; }
+
+        public TypeArgumentListSyntax GetTypeArgumentListSyntax()
+        {
+            if (TypeArgumentListAssociations.Count == 1)
+            {
+                return TypeArgumentList(
+                    SingletonSeparatedList<TypeSyntax>(
+                        TypeArgumentListAssociations
+                            .First()
+                            .TypeArgument
+                            .Identifier
+                            .GetIdentifierNameSyntax()));
+            }
+            var last = TypeArgumentListAssociations.Count - 1;
+            var list = new List<SyntaxNodeOrToken>();
+            for (int i = 0; i < last + 1; i++)
+            {
+                list.Add(
+                    TypeArgumentListAssociations[i]
+                        .TypeArgument
+                        .Identifier
+                        .GetIdentifierNameSyntax());
+                if (i != last) list.Add(Token(SyntaxKind.CommaToken));
+            }
+            return TypeArgumentList(
+                SeparatedList<TypeSyntax>(
+                    list));
+        }
     }
 }

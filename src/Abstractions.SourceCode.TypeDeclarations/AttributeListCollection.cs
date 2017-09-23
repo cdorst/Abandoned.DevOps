@@ -27,7 +27,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
             var attributes = AttributeLists
                 .Select(attr => AttributeList(SingletonSeparatedList(attr.Attribute.GetAttributeSyntax())))
                 .ToArray();
-            return (documentation == null) ? List(attributes) 
+            return (documentation == null) ? List(attributes)
                 : GetListWithDocumentation(documentation, attributes);
         }
 

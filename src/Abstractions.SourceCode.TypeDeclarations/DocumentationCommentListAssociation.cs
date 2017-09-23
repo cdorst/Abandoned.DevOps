@@ -11,12 +11,12 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         [Key]
         [ProtoMember(1)]
         public int DocumentationCommentListAssociationId { get; set; }
-        
+
         [ProtoMember(2)]
         public DocumentationComment DocumentationComment { get; set; }
         [ProtoMember(3)]
         public int DocumentationCommentId { get; set; }
-        
+
         [ProtoMember(4)]
         public DocumentationCommentList DocumentationCommentList { get; set; }
         [ProtoMember(5)]

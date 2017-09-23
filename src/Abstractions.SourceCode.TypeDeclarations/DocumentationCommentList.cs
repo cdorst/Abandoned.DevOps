@@ -31,7 +31,6 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 
         private IEnumerable<XmlNodeSyntax> GetXmlNodeSyntaxList()
         {
-
             var enumeration = DocumentationComments.SelectMany(c => c.DocumentationComment.GetXmlNodeSyntaxList());
             if (!IncludeNewLine) return enumeration;
             var list = enumeration.ToList();

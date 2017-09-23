@@ -26,7 +26,17 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public NameSyntax GetNameSyntax()
             => ParseName(Name.Value);
 
-        public Microsoft.CodeAnalysis.SyntaxToken GetSyntaxToken()
-            => Identifier(Name.Value);
+        public Microsoft.CodeAnalysis.SyntaxToken GetSyntaxToken(DocumentationCommentList documentationCommentList = null)
+            => documentationCommentList == null
+            ? Identifier(Name.Value)
+            : Identifier(
+                TriviaList(
+                    Trivia(
+                        documentationCommentList.GetDocumentationCommentTriviaSyntax())),
+                Name.Value,
+                TriviaList());
+
+        public TypeSyntax GetTypeSyntax()
+            => ParseTypeName(Name.Value);
     }
 }

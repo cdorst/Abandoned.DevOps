@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
@@ -6,19 +7,19 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
-    [Table("TypeSyntax", Schema = nameof(SourceCode))]
-    public class TypeSyntax
+    [Table("TypeParameters", Schema = nameof(SourceCode))]
+    public class TypeParameter
     {
         [Key]
         [ProtoMember(1)]
-        public int TypeSyntaxId { get; set; }
+        public int TypeParameterId { get; set; }
 
         [ProtoMember(2)]
         public Identifier Identifier { get; set; }
         [ProtoMember(3)]
         public int IdentifierId { get; set; }
 
-        public Microsoft.CodeAnalysis.CSharp.Syntax.TypeSyntax GetTypeSyntax()
-            => ParseTypeName(Identifier.Name.Value);
+        public TypeParameterSyntax GetTypeParameterSyntax()
+            => TypeParameter(Identifier.GetSyntaxToken());
     }
 }
