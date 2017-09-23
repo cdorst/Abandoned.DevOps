@@ -7,18 +7,13 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
-    public class ClassDeclaration : TypeDeclaration
+    public class StructDeclaration : TypeDeclaration
     {
-        [ProtoMember(28)]
-        public Finalizer Finalizer { get; set; }
-        [ProtoMember(29)]
-        public int? FinalizerId { get; set; }
-
         protected override BaseTypeDeclarationSyntax GetTypeDeclarationSyntax()
         {
             var hasAttributes = AttributeListCollection != null;
             var hasModifiers = ModifierList != null;
-            var declaration = ClassDeclaration(
+            var declaration = StructDeclaration(
                 Identifier.GetSyntaxToken((!hasAttributes && !hasModifiers) ? DocumentationCommentList : null));
             if (hasAttributes)
             {
@@ -62,10 +57,6 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
             if (MethodList != null)
             {
                 memberList.AddRange(MethodList.GetMemberDeclarationSyntax());
-            }
-            if (Finalizer != null)
-            {
-                memberList.Add(Finalizer.GetDestructorDeclarationSyntax());
             }
             return memberList.Count == 1
                 ? declaration.WithMembers(

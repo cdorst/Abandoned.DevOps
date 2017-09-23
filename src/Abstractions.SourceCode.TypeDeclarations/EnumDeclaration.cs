@@ -7,9 +7,9 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
     [ProtoContract]
     public class EnumDeclaration : TypeDeclaration
     {
-        [ProtoMember(26)]
+        [ProtoMember(28)]
         public EnumMemberList EnumMemberList { get; set; }
-        [ProtoMember(27)]
+        [ProtoMember(29)]
         public int EnumMemberListId { get; set; }
 
         protected override BaseTypeDeclarationSyntax GetTypeDeclarationSyntax()

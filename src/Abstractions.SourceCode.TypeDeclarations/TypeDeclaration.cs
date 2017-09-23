@@ -74,6 +74,11 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         [ProtoMember(25)]
         public int? UsingDirectiveListId { get; set; }
 
+        [ProtoMember(26)]
+        public FieldList FieldList { get; set; }
+        [ProtoMember(27)]
+        public int? FieldListId { get; set; }
+
         public CompilationUnitSyntax GetCompilationUnitSyntax()
         {
             var compilationUnit = CompilationUnit();
