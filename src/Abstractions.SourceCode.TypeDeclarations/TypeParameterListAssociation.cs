@@ -13,13 +13,13 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public int TypeParameterListAssociationId { get; set; }
 
         [ProtoMember(2)]
-        public TypeParameterList TypeParameterList { get; set; }
+        public TypeParameter TypeParameter { get; set; }
         [ProtoMember(3)]
-        public int TypeParameterListId { get; set; }
+        public int TypeParameterId { get; set; }
 
         [ProtoMember(4)]
-        public TypeParameter TypeParameter { get; set; }
+        public TypeParameterList TypeParameterList { get; set; }
         [ProtoMember(5)]
-        public int TypeParameterId { get; set; }
+        public int TypeParameterListId { get; set; }
     }
 }

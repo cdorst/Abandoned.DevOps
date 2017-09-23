@@ -13,13 +13,13 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public int TypeArgumentListAssociationId { get; set; }
 
         [ProtoMember(2)]
-        public TypeArgumentList TypeArgumentList { get; set; }
+        public TypeArgument TypeArgument { get; set; }
         [ProtoMember(3)]
-        public int TypeArgumentListId { get; set; }
+        public int TypeArgumentId { get; set; }
 
         [ProtoMember(4)]
-        public TypeArgument TypeArgument { get; set; }
+        public TypeArgumentList TypeArgumentList { get; set; }
         [ProtoMember(5)]
-        public int TypeArgumentId { get; set; }
+        public int TypeArgumentListId { get; set; }
     }
 }

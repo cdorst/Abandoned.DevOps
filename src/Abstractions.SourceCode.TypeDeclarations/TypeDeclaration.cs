@@ -7,7 +7,7 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
-    [Table("TypeDeclaration", Schema = nameof(SourceCode))]
+    [Table("TypeDeclarations", Schema = nameof(SourceCode))]
     public class TypeDeclaration
     {
         [Key]
