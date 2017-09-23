@@ -25,23 +25,28 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public int BlockId { get; set; }
 
         [ProtoMember(6)]
-        public DocumentationCommentList DocumentationCommentList { get; set; }
+        public ConstructorBaseInitializer ConstructorBaseInitializer { get; set; }
         [ProtoMember(7)]
-        public int? DocumentationCommentListId { get; set; }
+        public int? ConstructorBaseInitializerId { get; set; }
 
         [ProtoMember(8)]
-        public Identifier Identifier { get; set; }
+        public DocumentationCommentList DocumentationCommentList { get; set; }
         [ProtoMember(9)]
-        public int IdentifierId { get; set; }
+        public int? DocumentationCommentListId { get; set; }
 
         [ProtoMember(10)]
-        public ModifierList ModifierList { get; set; }
+        public Identifier Identifier { get; set; }
         [ProtoMember(11)]
-        public int? ModifierListId { get; set; }
+        public int IdentifierId { get; set; }
 
         [ProtoMember(12)]
-        public ParameterList ParameterList { get; set; }
+        public ModifierList ModifierList { get; set; }
         [ProtoMember(13)]
+        public int? ModifierListId { get; set; }
+
+        [ProtoMember(14)]
+        public ParameterList ParameterList { get; set; }
+        [ProtoMember(15)]
         public int? ParameterListId { get; set; }
 
         public MemberDeclarationSyntax GetMemberDeclarationSyntax()
@@ -59,6 +64,11 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
             {
                 declaration = declaration.WithModifiers(
                     ModifierList.GetSyntaxTokenList(hasAttributes ? null : DocumentationCommentList));
+            }
+            if (ConstructorBaseInitializer != null)
+            {
+                declaration = declaration.WithInitializer(
+                    ConstructorBaseInitializer.GetConstructorInitializerSyntax());
             }
             if (ParameterList != null)
             {
