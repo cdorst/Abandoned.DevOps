@@ -15,6 +15,7 @@ namespace DevOps.Abstractions.Core.Services
                 .AddScoped(typeof(IRepository<,>), typeof(CachedRepository<,>))
                 .AddScoped(typeof(IUpsertService<,>), typeof(UpsertService<,>))
                 .AddScoped(typeof(IUpsertListService<,>), typeof(UpsertListService<,>))
-                .AddScoped(typeof(IUpsertMappedListService<,,>), typeof(UpsertMappedListService<,,>));
+                .AddScoped(typeof(IUpsertMappedListService<,,>), typeof(UpsertMappedListService<,,>))
+                .AddScoped(typeof(IUpsertUniqueListService<,,,>), typeof(UpsertUniqueListService<,,,>));
     }
 }

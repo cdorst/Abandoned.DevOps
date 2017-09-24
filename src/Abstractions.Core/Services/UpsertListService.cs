@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevOps.Abstractions.Core.Services
 {
+
     public class UpsertListService<TDbContext, TRecord> : IUpsertListService<TDbContext, TRecord>
         where TDbContext : DbContext
         where TRecord : class
