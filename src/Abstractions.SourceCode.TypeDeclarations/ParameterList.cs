@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using DevOps.Abstractions.Core;
+using DevOps.Abstractions.UniqueStrings;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
@@ -12,13 +14,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("ParameterLists", Schema = nameof(SourceCode))]
-    public class ParameterList
+    public class ParameterList : IUniqueList<Parameter, ParameterListAssociation>
     {
         [Key]
         [ProtoMember(1)]
         public int ParameterListId { get; set; }
 
         [ProtoMember(2)]
+        public AsciiStringReference ListIdentifier { get; set; }
+        [ProtoMember(3)]
+        public int ListIdentifierId { get; set; }
+
+        [ProtoMember(4)]
         public List<ParameterListAssociation> ParameterListAssociations { get; set; }
 
         public ParameterListSyntax GetParameterListSyntax()
@@ -45,6 +52,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
             return ParameterList(
                 SeparatedList<ParameterSyntax>(
                     list));
+        }
+
+        public List<ParameterListAssociation> GetAssociations() => ParameterListAssociations;
+
+        public void SetRecords(List<Parameter> records)
+        {
+            for (int i = 0; i < ParameterListAssociations.Count; i++)
+            {
+                ParameterListAssociations[i].SetRecord(records[i]);
+            }
+            ListIdentifier = new AsciiStringReference(
+                string.Join(",", records.Select(r => r.ParameterId)));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+﻿using DevOps.Abstractions.Core;
+using Microsoft.CodeAnalysis.CSharp;
 using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("SyntaxTokens", Schema = nameof(SourceCode))]
-    public class SyntaxToken
+    public class SyntaxToken : IUniqueListRecord
     {
         [Key]
         [ProtoMember(1)]

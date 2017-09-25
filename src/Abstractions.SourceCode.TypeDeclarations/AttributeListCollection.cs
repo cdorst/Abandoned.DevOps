@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using DevOps.Abstractions.Core;
+using DevOps.Abstractions.UniqueStrings;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
@@ -13,13 +15,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
     /// <remarks>Each instance represents a collection of attribute lists. Each attribute list contains a single attribute</remarks>
     [ProtoContract]
     [Table("AttributeListCollections", Schema = nameof(SourceCode))]
-    public class AttributeListCollection
+    public class AttributeListCollection : IUniqueList<Attribute, AttributeListCollectionAssociation>
     {
         [Key]
         [ProtoMember(1)]
         public int AttributeListCollectionId { get; set; }
 
         [ProtoMember(2)]
+        public AsciiStringReference ListIdentifier { get; set; }
+        [ProtoMember(3)]
+        public int ListIdentifierId { get; set; }
+
+        [ProtoMember(4)]
         public List<AttributeListCollectionAssociation> AttributeLists { get; set; }
 
         public SyntaxList<AttributeListSyntax> GetAttributeListSyntaxList(DocumentationCommentList documentation = null)
@@ -29,6 +36,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
                 .ToArray();
             return (documentation == null) ? List(attributes)
                 : GetListWithDocumentation(documentation, attributes);
+        }
+
+        public List<AttributeListCollectionAssociation> GetAssociations() => AttributeLists;
+
+        public void SetRecords(List<Attribute> records)
+        {
+            for (int i = 0; i < AttributeLists.Count; i++)
+            {
+                AttributeLists[i].SetRecord(records[i]);
+            }
+            ListIdentifier = new AsciiStringReference(
+                string.Join(",", records.Select(r => r.AttributeId)));
         }
 
         private static SyntaxList<AttributeListSyntax> GetListWithDocumentation(DocumentationCommentList documentation, AttributeListSyntax[] attributes)

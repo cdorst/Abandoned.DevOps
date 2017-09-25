@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using DevOps.Abstractions.Core;
+using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,7 +7,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("BaseListAssociations", Schema = nameof(SourceCode))]
-    public class BaseListAssociation
+    public class BaseListAssociation : IUniqueListAssociation<BaseType>
     {
         [Key]
         [ProtoMember(1)]
@@ -21,5 +22,13 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public BaseList BaseList { get; set; }
         [ProtoMember(5)]
         public int BaseListId { get; set; }
+
+        public BaseType GetRecord() => BaseType;
+
+        public void SetRecord(BaseType record)
+        {
+            BaseType = record;
+            BaseTypeId = BaseType.BaseTypeId;
+        }
     }
 }

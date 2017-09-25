@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using DevOps.Abstractions.Core;
+using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,7 +7,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("ParameterListAssociations", Schema = nameof(SourceCode))]
-    public class ParameterListAssociation
+    public class ParameterListAssociation : IUniqueListAssociation<Parameter>
     {
         [Key]
         [ProtoMember(1)]
@@ -21,5 +22,13 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public ParameterList ParameterList { get; set; }
         [ProtoMember(5)]
         public int ParameterListId { get; set; }
+
+        public Parameter GetRecord() => Parameter;
+
+        public void SetRecord(Parameter record)
+        {
+            Parameter = record;
+            ParameterId = Parameter.ParameterId;
+        }
     }
 }

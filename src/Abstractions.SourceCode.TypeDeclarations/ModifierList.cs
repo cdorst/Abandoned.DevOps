@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using DevOps.Abstractions.Core;
+using DevOps.Abstractions.UniqueStrings;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using ProtoBuf;
 using System.Collections.Generic;
@@ -11,13 +13,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("ModifierLists", Schema = nameof(SourceCode))]
-    public class ModifierList
+    public class ModifierList : IUniqueList<SyntaxToken, ModifierListAssociation>
     {
         [Key]
         [ProtoMember(1)]
         public int ModifierListId { get; set; }
 
         [ProtoMember(2)]
+        public AsciiStringReference ListIdentifier { get; set; }
+        [ProtoMember(3)]
+        public int ListIdentifierId { get; set; }
+
+        [ProtoMember(4)]
         public List<ModifierListAssociation> ModifierListAssociations { get; set; }
 
         public SyntaxTokenList GetSyntaxTokenList(DocumentationCommentList documentationCommentList = null)
@@ -48,7 +55,19 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
                 .OrderBy(m => Rank(m.SyntaxKind))
                 .ToList();
 
-        private int Rank(SyntaxKind modifier)
+        public List<ModifierListAssociation> GetAssociations() => ModifierListAssociations;
+
+        public void SetRecords(List<SyntaxToken> records)
+        {
+            for (int i = 0; i < ModifierListAssociations.Count; i++)
+            {
+                ModifierListAssociations[i].SetRecord(records[i]);
+            }
+            ListIdentifier = new AsciiStringReference(
+                string.Join(",", records.Select(r => r.SyntaxTokenId)));
+        }
+
+        private static int Rank(SyntaxKind modifier)
             => modifier == SyntaxKind.PublicKeyword ? 0
             : modifier == SyntaxKind.ProtectedKeyword ? 1
             : modifier == SyntaxKind.InternalKeyword ? 2

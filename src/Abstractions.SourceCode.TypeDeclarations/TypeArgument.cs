@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using DevOps.Abstractions.Core;
+using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,7 +7,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("TypeArguments", Schema = nameof(SourceCode))]
-    public class TypeArgument
+    public class TypeArgument : IUniqueListRecord
     {
         [Key]
         [ProtoMember(1)]

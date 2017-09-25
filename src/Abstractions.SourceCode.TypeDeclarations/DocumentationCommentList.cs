@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+﻿using DevOps.Abstractions.Core;
+using DevOps.Abstractions.UniqueStrings;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
 using System;
@@ -12,7 +14,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("DocumentationCommentLists", Schema = nameof(SourceCode))]
-    public class DocumentationCommentList
+    public class DocumentationCommentList : IUniqueList<DocumentationComment, DocumentationCommentListAssociation>
     {
         [Key]
         [ProtoMember(1)]
@@ -22,6 +24,11 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public bool IncludeNewLine { get; set; }
 
         [ProtoMember(3)]
+        public AsciiStringReference ListIdentifier { get; set; }
+        [ProtoMember(4)]
+        public int ListIdentifierId { get; set; }
+
+        [ProtoMember(5)]
         public List<DocumentationCommentListAssociation> DocumentationComments { get; set; }
 
         public DocumentationCommentTriviaSyntax GetDocumentationCommentTriviaSyntax()
@@ -38,7 +45,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
             return list;
         }
 
-        private XmlTextSyntax GetNewLine()
+        private static XmlTextSyntax GetNewLine()
             => XmlText()
                 .WithTextTokens(
                     TokenList(
@@ -47,5 +54,17 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
                             Environment.NewLine,
                             Environment.NewLine,
                             TriviaList())));
+
+        public List<DocumentationCommentListAssociation> GetAssociations() => DocumentationComments;
+
+        public void SetRecords(List<DocumentationComment> records)
+        {
+            for (int i = 0; i < DocumentationComments.Count; i++)
+            {
+                DocumentationComments[i].SetRecord(records[i]);
+            }
+            ListIdentifier = new AsciiStringReference(
+                string.Join(",", records.Select(r => r.DocumentationCommentId)));
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using DevOps.Abstractions.Core;
+using DevOps.Abstractions.UniqueStrings;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
@@ -12,13 +14,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("ConstraintLists", Schema = nameof(SourceCode))]
-    public class ConstraintList
+    public class ConstraintList : IUniqueList<Constraint, ConstraintListAssociation>
     {
         [Key]
         [ProtoMember(1)]
         public int ConstraintListId { get; set; }
 
         [ProtoMember(2)]
+        public AsciiStringReference ListIdentifier { get; set; }
+        [ProtoMember(3)]
+        public int ListIdentifierId { get; set; }
+
+        [ProtoMember(4)]
         public List<ConstraintListAssociation> ConstraintListAssociations { get; set; }
 
         public SeparatedSyntaxList<TypeParameterConstraintSyntax> GetConstraintList()
@@ -42,6 +49,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
                 if (i != last) list.Add(Token(SyntaxKind.CommaToken));
             }
             return SeparatedList<TypeParameterConstraintSyntax>(list);
+        }
+
+        public List<ConstraintListAssociation> GetAssociations() => ConstraintListAssociations;
+
+        public void SetRecords(List<Constraint> records)
+        {
+            for (int i = 0; i < ConstraintListAssociations.Count; i++)
+            {
+                ConstraintListAssociations[i].SetRecord(records[i]);
+            }
+            ListIdentifier = new AsciiStringReference(
+                string.Join(",", records.Select(r => r.ConstraintId)));
         }
     }
 }

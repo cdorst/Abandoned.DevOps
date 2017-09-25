@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using DevOps.Abstractions.Core;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,11 +9,11 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("Attributes", Schema = nameof(SourceCode))]
-    public class Attribute
+    public class Attribute : IUniqueListRecord
     {
         [Key]
         [ProtoMember(1)]
-        public int AttributeID { get; set; }
+        public int AttributeId { get; set; }
 
         [ProtoMember(2)]
         public Identifier Identifier { get; set; }

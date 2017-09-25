@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using DevOps.Abstractions.Core;
+using DevOps.Abstractions.UniqueStrings;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
@@ -12,13 +14,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("EnumMemberLists", Schema = nameof(SourceCode))]
-    public class EnumMemberList
+    public class EnumMemberList : IUniqueList<EnumMember, EnumMemberListAssociation>
     {
         [Key]
         [ProtoMember(1)]
         public int EnumMemberListId { get; set; }
 
         [ProtoMember(2)]
+        public AsciiStringReference ListIdentifier { get; set; }
+        [ProtoMember(3)]
+        public int ListIdentifierId { get; set; }
+
+        [ProtoMember(4)]
         public List<EnumMemberListAssociation> EnumMemberListAssociations { get; set; }
 
         public SeparatedSyntaxList<EnumMemberDeclarationSyntax> GetEnumMembers()
@@ -42,6 +49,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
                 if (i != last) list.Add(Token(SyntaxKind.CommaToken));
             }
             return SeparatedList<EnumMemberDeclarationSyntax>(list);
+        }
+
+        public List<EnumMemberListAssociation> GetAssociations() => EnumMemberListAssociations;
+
+        public void SetRecords(List<EnumMember> records)
+        {
+            for (int i = 0; i < EnumMemberListAssociations.Count; i++)
+            {
+                EnumMemberListAssociations[i].SetRecord(records[i]);
+            }
+            ListIdentifier = new AsciiStringReference(
+                string.Join(",", records.Select(r => r.EnumMemberId)));
         }
     }
 }

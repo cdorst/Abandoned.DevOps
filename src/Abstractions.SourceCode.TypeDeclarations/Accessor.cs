@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+﻿using DevOps.Abstractions.Core;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("Accessors", Schema = nameof(SourceCode))]
-    public class Accessor
+    public class Accessor : IUniqueListRecord
     {
         [Key]
         [ProtoMember(1)]

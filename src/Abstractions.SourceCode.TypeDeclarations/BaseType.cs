@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using DevOps.Abstractions.Core;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +9,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("BaseTypes", Schema = nameof(SourceCode))]
-    public class BaseType
+    public class BaseType : IUniqueListRecord
     {
         [Key]
         [ProtoMember(1)]

@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp;
+﻿using DevOps.Abstractions.Core;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("Methods", Schema = nameof(SourceCode))]
-    public class Method : ISortableMemberDeclaration
+    public class Method : ISortableMemberDeclaration, IUniqueListRecord
     {
         [Key]
         [ProtoMember(1)]

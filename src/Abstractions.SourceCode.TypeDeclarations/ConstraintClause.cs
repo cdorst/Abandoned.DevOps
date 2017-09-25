@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using DevOps.Abstractions.Core;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("ConstraintClauses", Schema = nameof(SourceCode))]
-    public class ConstraintClause
+    public class ConstraintClause : IUniqueListRecord
     {
         [Key]
         [ProtoMember(1)]

@@ -1,4 +1,5 @@
-﻿using DevOps.Abstractions.UniqueStrings;
+﻿using DevOps.Abstractions.Core;
+using DevOps.Abstractions.UniqueStrings;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
@@ -11,7 +12,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("DocumentationCommentAttributes", Schema = nameof(SourceCode))]
-    public class DocumentationCommentAttribute
+    public class DocumentationCommentAttribute : IUniqueListRecord
     {
         [Key]
         [ProtoMember(1)]

@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using DevOps.Abstractions.Core;
+using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,7 +7,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("UsingDirectiveListAssociations", Schema = nameof(SourceCode))]
-    public class UsingDirectiveListAssociation
+    public class UsingDirectiveListAssociation : IUniqueListAssociation<UsingDirective>
     {
         [Key]
         [ProtoMember(1)]
@@ -21,5 +22,13 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public UsingDirectiveList UsingDirectiveList { get; set; }
         [ProtoMember(5)]
         public int UsingDirectiveListId { get; set; }
+
+        public UsingDirective GetRecord() => UsingDirective;
+
+        public void SetRecord(UsingDirective record)
+        {
+            UsingDirective = record;
+            UsingDirectiveId = UsingDirective.UsingDirectiveId;
+        }
     }
 }

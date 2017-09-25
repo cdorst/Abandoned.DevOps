@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using DevOps.Abstractions.Core;
+using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,7 +7,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("FieldListAssociations", Schema = nameof(SourceCode))]
-    public class FieldListAssociation
+    public class FieldListAssociation : IUniqueListAssociation<Field>
     {
         [Key]
         [ProtoMember(1)]
@@ -21,5 +22,13 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public FieldList FieldList { get; set; }
         [ProtoMember(5)]
         public int FieldListId { get; set; }
+
+        public Field GetRecord() => Field;
+
+        public void SetRecord(Field record)
+        {
+            Field = record;
+            FieldId = Field.FieldId;
+        }
     }
 }

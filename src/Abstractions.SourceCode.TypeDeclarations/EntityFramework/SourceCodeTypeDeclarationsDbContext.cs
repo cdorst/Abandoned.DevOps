@@ -81,18 +81,26 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations.EntityFramework
         {
             modelBuilder.Entity<Accessor>()
                 .HasIndex(e => new { e.BodyId, e.SyntaxTokenId }).IsUnique();
+            modelBuilder.Entity<AccessorList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<AccessorListAssociation>()
                 .HasIndex(e => new { e.AccessorId, e.AccessorListId }).IsUnique();
             modelBuilder.Entity<Argument>()
                 .HasIndex(e => new { e.IdentifierId }).IsUnique();
+            modelBuilder.Entity<ArgumentList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<ArgumentListAssociation>()
                 .HasIndex(e => new { e.ArgumentId, e.ArgumentListId }).IsUnique();
             modelBuilder.Entity<Attribute>()
                 .HasIndex(e => new { e.IdentifierId, e.AttributeArgumentListExpressionId }).IsUnique();
             modelBuilder.Entity<AttributeArgumentListExpression>()
                 .HasIndex(e => new { e.ExpressionId }).IsUnique();
+            modelBuilder.Entity<AttributeListCollection>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<AttributeListCollectionAssociation>()
                 .HasIndex(e => new { e.AttributeId, e.AttributeListCollectionId }).IsUnique();
+            modelBuilder.Entity<BaseList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<BaseListAssociation>()
                 .HasIndex(e => new { e.BaseTypeId, e.BaseListId }).IsUnique();
             modelBuilder.Entity<BaseType>()
@@ -103,32 +111,46 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations.EntityFramework
                 .HasIndex(e => new { e.IdentifierId }).IsUnique();
             modelBuilder.Entity<ConstraintClause>()
                 .HasIndex(e => new { e.ConstraintListId, e.IdentifierId }).IsUnique();
+            modelBuilder.Entity<ConstraintClauseList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<ConstraintClauseListAssociation>()
                 .HasIndex(e => new { e.ConstraintClauseId, e.ConstraintClauseListId }).IsUnique();
+            modelBuilder.Entity<ConstraintList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<ConstraintListAssociation>()
                 .HasIndex(e => new { e.ConstraintId, e.ConstraintListId }).IsUnique();
             modelBuilder.Entity<Constructor>()
                 .HasIndex(e => new { e.AttributeListCollectionId, e.BlockId, e.ConstructorBaseInitializerId, e.DocumentationCommentListId, e.IdentifierId, e.ModifierListId, e.ParameterListId }).IsUnique();
             modelBuilder.Entity<ConstructorBaseInitializer>()
                 .HasIndex(e => new { e.ArgumentListId }).IsUnique();
+            modelBuilder.Entity<ConstructorList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<ConstructorListAssociation>()
                 .HasIndex(e => new { e.ConstructorId, e.ConstructorListId }).IsUnique();
             modelBuilder.Entity<DocumentationComment>()
                 .HasIndex(e => new { e.IncludeNewLine, e.IndentLevel, e.IdentifierId, e.TextId }).IsUnique();
             modelBuilder.Entity<DocumentationCommentAttribute>()
                 .HasIndex(e => new { e.IdentifierId, e.ValueId }).IsUnique();
+            modelBuilder.Entity<DocumentationCommentAttributeList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<DocumentationCommentAttributeListAssociation>()
                 .HasIndex(e => new { e.DocumentationCommentAttributeId, e.DocumentationCommentAttributeListId }).IsUnique();
+            modelBuilder.Entity<DocumentationCommentList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<DocumentationCommentListAssociation>()
                 .HasIndex(e => new { e.DocumentationCommentId, e.DocumentationCommentListId }).IsUnique();
             modelBuilder.Entity<EnumMember>()
                 .HasIndex(e => new { e.EqualsValue, e.IdentifierId, e.DocumentationCommentListId }).IsUnique();
+            modelBuilder.Entity<EnumMemberList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<EnumMemberListAssociation>()
                 .HasIndex(e => new { e.EnumMemberListId, e.EnumMemberId }).IsUnique();
             modelBuilder.Entity<Expression>()
                 .HasIndex(e => new { e.TextId }).IsUnique();
             modelBuilder.Entity<Field>()
                 .HasIndex(e => new { e.AttributeListCollectionId, e.DocumentationCommentListId, e.IdentifierId, e.InitializerId, e.ModifierListId, e.TypeId }).IsUnique();
+            modelBuilder.Entity<FieldList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<FieldListAssociation>()
                 .HasIndex(e => new { e.FieldId, e.FieldListId }).IsUnique();
             modelBuilder.Entity<Finalizer>()
@@ -137,38 +159,54 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations.EntityFramework
                 .HasIndex(e => new { e.NameId }).IsUnique();
             modelBuilder.Entity<Method>()
                 .HasIndex(e => new { e.ArrowClauseExpressionValueId, e.AttributeListCollectionId, e.BlockId, e.DocumentationCommentListId, e.IdentifierId, e.ModifierListId, e.ParameterListId, e.TypeId, e.TypeParameterListId }).IsUnique();
+            modelBuilder.Entity<MethodList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<MethodListAssociation>()
                 .HasIndex(e => new { e.MethodId, e.MethodListId }).IsUnique();
+            modelBuilder.Entity<ModifierList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<ModifierListAssociation>()
                 .HasIndex(e => new { e.ModifierListId, e.SyntaxTokenId }).IsUnique();
             modelBuilder.Entity<Namespace>()
                 .HasIndex(e => new { e.IdentifierId }).IsUnique();
             modelBuilder.Entity<Parameter>()
                 .HasIndex(e => new { e.AttributeListCollectionId, e.DefaultValueId, e.IdentifierId, e.TypeId }).IsUnique();
+            modelBuilder.Entity<ParameterList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<ParameterListAssociation>()
                 .HasIndex(e => new { e.ParameterId, e.ParameterListId }).IsUnique();
             modelBuilder.Entity<Property>()
                 .HasIndex(e => new { e.AccessorListId, e.AttributeListCollectionId, e.DocumentationCommentListId, e.IdentifierId, e.ModifierListId, e.TypeId }).IsUnique();
+            modelBuilder.Entity<PropertyList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<PropertyListAssociation>()
                 .HasIndex(e => new { e.PropertyId, e.PropertyListId }).IsUnique();
             modelBuilder.Entity<Statement>()
                 .HasIndex(e => new { e.TextId }).IsUnique();
+            modelBuilder.Entity<StatementList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<StatementListAssociation>()
                 .HasIndex(e => new { e.StatementId, e.StatementListId }).IsUnique();
             modelBuilder.Entity<SyntaxToken>()
                 .HasIndex(e => new { e.SyntaxKind }).IsUnique();
             modelBuilder.Entity<TypeArgument>()
                 .HasIndex(e => new { e.IdentifierId }).IsUnique();
+            modelBuilder.Entity<TypeArgumentList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<TypeArgumentListAssociation>()
                 .HasIndex(e => new { e.TypeArgumentId, e.TypeArgumentListAssociationId }).IsUnique();
             modelBuilder.Entity<TypeDeclaration>()
                 .HasIndex(e => new { e.IdentifierId, e.NamespaceId }).IsUnique();
             modelBuilder.Entity<TypeParameter>()
                 .HasIndex(e => new { e.IdentifierId }).IsUnique();
+            modelBuilder.Entity<TypeParameterList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<TypeParameterListAssociation>()
                 .HasIndex(e => new { e.TypeParameterId, e.TypeParameterListId }).IsUnique();
             modelBuilder.Entity<UsingDirective>()
                 .HasIndex(e => new { e.IdentifierId }).IsUnique();
+            modelBuilder.Entity<UsingDirectiveList>()
+                .HasIndex(e => new { e.ListIdentifierId }).IsUnique();
             modelBuilder.Entity<UsingDirectiveListAssociation>()
                 .HasIndex(e => new { e.UsingDirectiveId, e.UsingDirectiveListId }).IsUnique();
         }

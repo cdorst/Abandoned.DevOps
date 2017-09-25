@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using DevOps.Abstractions.Core;
+using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,7 +7,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("ModifierListAssociations", Schema = nameof(SourceCode))]
-    public class ModifierListAssociation
+    public class ModifierListAssociation : IUniqueListAssociation<SyntaxToken>
     {
         [Key]
         [ProtoMember(1)]
@@ -21,5 +22,13 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public SyntaxToken SyntaxToken { get; set; }
         [ProtoMember(5)]
         public int SyntaxTokenId { get; set; }
+
+        public SyntaxToken GetRecord() => SyntaxToken;
+
+        public void SetRecord(SyntaxToken record)
+        {
+            SyntaxToken = record;
+            SyntaxTokenId = SyntaxToken.SyntaxTokenId;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using DevOps.Abstractions.Core;
+using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,7 +7,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("ConstraintListAssociations", Schema = nameof(SourceCode))]
-    public class ConstraintListAssociation
+    public class ConstraintListAssociation : IUniqueListAssociation<Constraint>
     {
         [Key]
         [ProtoMember(1)]
@@ -21,5 +22,13 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public ConstraintList ConstraintList { get; set; }
         [ProtoMember(5)]
         public int ConstraintListId { get; set; }
+
+        public Constraint GetRecord() => Constraint;
+
+        public void SetRecord(Constraint record)
+        {
+            Constraint = record;
+            ConstraintId = Constraint.ConstraintId;
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using DevOps.Abstractions.Core;
+using DevOps.Abstractions.UniqueStrings;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
@@ -12,13 +14,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("BaseLists", Schema = nameof(SourceCode))]
-    public class BaseList
+    public class BaseList : IUniqueList<BaseType, BaseListAssociation>
     {
         [Key]
         [ProtoMember(1)]
         public int BaseListId { get; set; }
 
         [ProtoMember(2)]
+        public AsciiStringReference ListIdentifier { get; set; }
+        [ProtoMember(3)]
+        public int ListIdentifierId { get; set; }
+
+        [ProtoMember(4)]
         public List<BaseListAssociation> BaseListAssociations { get; set; }
 
         public BaseListSyntax GetBaseListSyntax()
@@ -45,6 +52,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
             return BaseList(
                 SeparatedList<BaseTypeSyntax>(
                     list));
+        }
+
+        public List<BaseListAssociation> GetAssociations() => BaseListAssociations;
+
+        public void SetRecords(List<BaseType> records)
+        {
+            for (int i = 0; i < BaseListAssociations.Count; i++)
+            {
+                BaseListAssociations[i].SetRecord(records[i]);
+            }
+            ListIdentifier = new AsciiStringReference(
+                string.Join(",", records.Select(r => r.BaseTypeId)));
         }
     }
 }

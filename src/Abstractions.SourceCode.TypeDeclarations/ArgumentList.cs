@@ -1,4 +1,6 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using DevOps.Abstractions.Core;
+using DevOps.Abstractions.UniqueStrings;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ProtoBuf;
@@ -12,13 +14,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
 {
     [ProtoContract]
     [Table("ArgumentLists", Schema = nameof(SourceCode))]
-    public class ArgumentList
+    public class ArgumentList : IUniqueList<Argument, ArgumentListAssociation>
     {
         [Key]
         [ProtoMember(1)]
         public int ArgumentListId { get; set; }
 
         [ProtoMember(2)]
+        public AsciiStringReference ListIdentifier { get; set; }
+        [ProtoMember(3)]
+        public int ListIdentifierId { get; set; }
+
+        [ProtoMember(4)]
         public List<ArgumentListAssociation> ArgumentListAssociations { get; set; }
 
         public ArgumentListSyntax GetArgumentListSyntax()
@@ -45,6 +52,18 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
             return ArgumentList(
                 SeparatedList<ArgumentSyntax>(
                     list));
+        }
+
+        public List<ArgumentListAssociation> GetAssociations() => ArgumentListAssociations;
+
+        public void SetRecords(List<Argument> records)
+        {
+            for (int i = 0; i < ArgumentListAssociations.Count; i++)
+            {
+                ArgumentListAssociations[i].SetRecord(records[i]);
+            }
+            ListIdentifier = new AsciiStringReference(
+                string.Join(",", records.Select(r => r.ArgumentId)));
         }
     }
 }
