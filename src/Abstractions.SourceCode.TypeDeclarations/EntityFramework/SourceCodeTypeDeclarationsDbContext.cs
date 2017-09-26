@@ -23,6 +23,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations.EntityFramework
         public DbSet<BaseListAssociation> BaseListAssociations { get; set; }
         public DbSet<BaseType> BaseTypes { get; set; }
         public DbSet<Block> Blocks { get; set; }
+        public DbSet<ClassDeclaration> ClassDeclarations { get; set; }
         public DbSet<Constraint> Constraints { get; set; }
         public DbSet<ConstraintClause> ConstraintClauses { get; set; }
         public DbSet<ConstraintClauseListAssociation> ConstraintClauseListAssociations { get; set; }
@@ -39,6 +40,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations.EntityFramework
         public DbSet<DocumentationCommentAttributeListAssociation> DocumentationCommentAttributeListAssociations { get; set; }
         public DbSet<DocumentationCommentList> DocumentationCommentLists { get; set; }
         public DbSet<DocumentationCommentListAssociation> DocumentationCommentListAssociations { get; set; }
+        public DbSet<EnumDeclaration> EnumDeclarations { get; set; }
         public DbSet<EnumMember> EnumMembers { get; set; }
         public DbSet<EnumMemberList> EnumMemberLists { get; set; }
         public DbSet<EnumMemberListAssociation> EnumMemberListAssociations { get; set; }
@@ -48,6 +50,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations.EntityFramework
         public DbSet<FieldListAssociation> FieldListAssociations { get; set; }
         public DbSet<Finalizer> Finalizers { get; set; }
         public DbSet<Identifier> Identifiers { get; set; }
+        public DbSet<InterfaceDeclaration> InterfaceDeclarations { get; set; }
         public DbSet<Method> Methods { get; set; }
         public DbSet<MethodList> MethodLists { get; set; }
         public DbSet<MethodListAssociation> MethodListAssociations { get; set; }
@@ -63,6 +66,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations.EntityFramework
         public DbSet<Statement> Statements { get; set; }
         public DbSet<StatementList> StatementLists { get; set; }
         public DbSet<StatementListAssociation> StatementListAssociations { get; set; }
+        public DbSet<StructDeclaration> StructDeclarations { get; set; }
         public DbSet<SyntaxToken> SyntaxTokens { get; set; }
         public DbSet<TypeArgument> TypeArguments { get; set; }
         public DbSet<TypeArgumentList> TypeArgumentLists { get; set; }
