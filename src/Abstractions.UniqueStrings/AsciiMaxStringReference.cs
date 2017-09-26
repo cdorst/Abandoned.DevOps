@@ -12,7 +12,7 @@ namespace DevOps.Abstractions.UniqueStrings
         public AsciiMaxStringReference(string input) { Value = input; }
         [Key]
         [ProtoMember(1)]
-        public int UnicodeMaxStringReferenceId { get; set; }
+        public int AsciiMaxStringReferenceId { get; set; }
 
         [ProtoMember(2)]
         public AsciiStringReference Hash { get; set; }
