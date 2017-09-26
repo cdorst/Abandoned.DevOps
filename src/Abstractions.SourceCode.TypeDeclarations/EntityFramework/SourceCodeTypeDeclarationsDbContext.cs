@@ -26,6 +26,7 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations.EntityFramework
         public DbSet<Constraint> Constraints { get; set; }
         public DbSet<ConstraintClause> ConstraintClauses { get; set; }
         public DbSet<ConstraintClauseListAssociation> ConstraintClauseListAssociations { get; set; }
+        public DbSet<ConstraintClauseList> ConstraintClauseLists { get; set; }
         public DbSet<ConstraintList> ConstraintLists { get; set; }
         public DbSet<ConstraintListAssociation> ConstraintListAssociations { get; set; }
         public DbSet<Constructor> Constructors { get; set; }
@@ -56,6 +57,9 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations.EntityFramework
         public DbSet<Parameter> Parameters { get; set; }
         public DbSet<ParameterList> ParameterLists { get; set; }
         public DbSet<ParameterListAssociation> ParameterListAssociations { get; set; }
+        public DbSet<Property> Properties { get; set; }
+        public DbSet<PropertyList> PropertyLists { get; set; }
+        public DbSet<PropertyListAssociation> PropertyListAssociations { get; set; }
         public DbSet<Statement> Statements { get; set; }
         public DbSet<StatementList> StatementLists { get; set; }
         public DbSet<StatementListAssociation> StatementListAssociations { get; set; }
