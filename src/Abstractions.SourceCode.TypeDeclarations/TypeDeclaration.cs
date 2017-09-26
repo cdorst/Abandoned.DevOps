@@ -40,44 +40,44 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
         public int? DocumentationCommentListId { get; set; }
 
         [ProtoMember(12)]
-        public Identifier Identifier { get; set; }
+        public FieldList FieldList { get; set; }
         [ProtoMember(13)]
-        public int IdentifierId { get; set; }
+        public int? FieldListId { get; set; }
 
         [ProtoMember(14)]
-        public MethodList MethodList { get; set; }
+        public Identifier Identifier { get; set; }
         [ProtoMember(15)]
-        public int? MethodListId { get; set; }
+        public int IdentifierId { get; set; }
 
         [ProtoMember(16)]
-        public ModifierList ModifierList { get; set; }
+        public MethodList MethodList { get; set; }
         [ProtoMember(17)]
-        public int? ModifierListId { get; set; }
+        public int? MethodListId { get; set; }
 
         [ProtoMember(18)]
-        public Namespace Namespace { get; set; }
+        public ModifierList ModifierList { get; set; }
         [ProtoMember(19)]
-        public int NamespaceId { get; set; }
+        public int? ModifierListId { get; set; }
 
         [ProtoMember(20)]
-        public PropertyList PropertyList { get; set; }
+        public Namespace Namespace { get; set; }
         [ProtoMember(21)]
-        public int? PropertyListId { get; set; }
+        public int NamespaceId { get; set; }
 
         [ProtoMember(22)]
-        public TypeParameterList TypeParameterList { get; set; }
+        public PropertyList PropertyList { get; set; }
         [ProtoMember(23)]
-        public int? TypeParameterListId { get; set; }
+        public int? PropertyListId { get; set; }
 
         [ProtoMember(24)]
-        public UsingDirectiveList UsingDirectiveList { get; set; }
+        public TypeParameterList TypeParameterList { get; set; }
         [ProtoMember(25)]
-        public int? UsingDirectiveListId { get; set; }
+        public int? TypeParameterListId { get; set; }
 
         [ProtoMember(26)]
-        public FieldList FieldList { get; set; }
+        public UsingDirectiveList UsingDirectiveList { get; set; }
         [ProtoMember(27)]
-        public int? FieldListId { get; set; }
+        public int? UsingDirectiveListId { get; set; }
 
         public CompilationUnitSyntax GetCompilationUnitSyntax()
         {
