@@ -24,11 +24,19 @@ namespace DevOps.Abstractions.SourceCode.Solutions
         public int NameId { get; set; }
 
         [ProtoMember(5)]
-        public SolutionFolder SolutionFolder { get; set; }
+        public AsciiStringReference PathRelativeToSolution { get; set; }
         [ProtoMember(6)]
-        public int SolutionFolderId { get; set; }
+        public int PathRelativeToSolutionId { get; set; }
 
         [ProtoMember(7)]
+        public SolutionFolder SolutionFolder { get; set; }
+        [ProtoMember(8)]
+        public int SolutionFolderId { get; set; }
+
+        [ProtoMember(9)]
         public List<ProjectFile> ProjectFiles { get; set; }
+
+        public string GetNamespace()
+            => $"{SolutionFolder.Solution.Name.Value}.{Name.Value}";
     }
 }

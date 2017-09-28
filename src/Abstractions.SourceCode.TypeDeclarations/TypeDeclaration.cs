@@ -1,7 +1,11 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Formatting;
 using ProtoBuf;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
+using System.Text;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace DevOps.Abstractions.SourceCode.TypeDeclarations
@@ -93,7 +97,25 @@ namespace DevOps.Abstractions.SourceCode.TypeDeclarations
                         GetTypeDeclarationSyntax())));
         }
 
+        public string GetNamespace()
+            => Namespace.Identifier.Name.Value;
+
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+            using (var stringWriter = new StringWriter(stringBuilder))
+            {
+                GetFormattedSyntaxNode().WriteTo(stringWriter);
+            }
+            return stringBuilder.ToString();
+        }
+
         protected virtual BaseTypeDeclarationSyntax GetTypeDeclarationSyntax()
             => default(BaseTypeDeclarationSyntax);
+
+        private SyntaxNode GetFormattedSyntaxNode()
+            => Formatter.Format(
+                GetCompilationUnitSyntax(),
+                new AdhocWorkspace());
     }
 }

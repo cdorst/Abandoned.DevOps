@@ -41,6 +41,8 @@ namespace DevOps.Abstractions.SourceCode.Solutions.EntityFramework.Services
         {
             record.Name = await _strings.UpsertAsync(record.Name);
             record.NameId = record.Name?.AsciiStringReferenceId ?? record.NameId;
+            record.PathRelativeToSolution = await _strings.UpsertAsync(record.PathRelativeToSolution);
+            record.PathRelativeToSolutionId = record.PathRelativeToSolution?.AsciiStringReferenceId ?? record.PathRelativeToSolutionId;
             return record;
         }
 
@@ -48,11 +50,12 @@ namespace DevOps.Abstractions.SourceCode.Solutions.EntityFramework.Services
         {
             yield return record.Name;
             yield return record.SolutionFolder;
+            yield return record.PathRelativeToSolution;
             yield return record.ProjectFiles;
         }
 
         protected override Expression<Func<Project, bool>> FindExisting(Project record)
-            => existing 
+            => existing
                 => existing.NameId == record.NameId
                 && existing.SolutionFolderId == record.SolutionFolderId;
     }

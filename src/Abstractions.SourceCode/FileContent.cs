@@ -10,6 +10,13 @@ namespace DevOps.Abstractions.SourceCode
     [Table("FileContents", Schema = nameof(SourceCode))]
     public class FileContent
     {
+        public FileContent() { }
+        public FileContent(string content)
+        {
+            Content = new UnicodeMaxStringReference(content);
+            DateAdded = DateTimeOffset.UtcNow;
+        }
+
         [Key]
         [ProtoMember(1)]
         public int FileContentId { get; set; }
