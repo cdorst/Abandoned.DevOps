@@ -1,6 +1,8 @@
 ﻿using ProtoBuf;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace DevOps.Abstractions.UniqueStrings
 {
@@ -10,6 +12,12 @@ namespace DevOps.Abstractions.UniqueStrings
     {
         public UnicodeMaxStringReference() { }
         public UnicodeMaxStringReference(string input) { Value = input; }
+        public UnicodeMaxStringReference(StringBuilder stringBuilder)
+        {
+            Value = stringBuilder?.ToString()
+                ?? throw new ArgumentNullException(nameof(stringBuilder));
+        }
+
         [Key]
         [ProtoMember(1)]
         public int UnicodeMaxStringReferenceId { get; set; }

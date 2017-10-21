@@ -16,26 +16,26 @@ namespace DevOps.Abstractions.SourceCode.Solutions.EntityFramework.Services
         public NuGetFeedUpsertService(ICacheService<NuGetFeed> cache, TDbContext database, ILogger<UpsertService<TDbContext, NuGetFeed>> logger, IUpsertService<TDbContext, AsciiStringReference> strings)
             : base(cache, database, logger, database.NuGetFeeds)
         {
-            CacheKey = record => $"{nameof(SourceCode)}.{nameof(NuGetFeed)}={record.NameId}:{record.SolutionId}";
+            CacheKey = record => $"{nameof(SourceCode)}.{nameof(NuGetFeed)}={record.ValueId}:{record.SolutionId}";
             _strings = strings ?? throw new ArgumentNullException(nameof(strings));
         }
 
         protected override async Task<NuGetFeed> AssignUpsertedReferences(NuGetFeed record)
         {
-            record.Name = await _strings.UpsertAsync(record.Name);
-            record.NameId = record.Name?.AsciiStringReferenceId ?? record.NameId;
+            record.Value = await _strings.UpsertAsync(record.Value);
+            record.ValueId = record.Value?.AsciiStringReferenceId ?? record.ValueId;
             return record;
         }
 
         protected override IEnumerable<object> EnumerateReferences(NuGetFeed record)
         {
-            yield return record.Name;
+            yield return record.Value;
             yield return record.Solution;
         }
 
         protected override Expression<Func<NuGetFeed, bool>> FindExisting(NuGetFeed record)
             => existing
-                => existing.NameId == record.NameId
+                => existing.ValueId == record.ValueId
                 && existing.SolutionId == record.SolutionId;
     }
 }

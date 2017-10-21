@@ -26,4 +26,15 @@ namespace DevOps.Abstractions.SourceCode.Solutions
         [ProtoMember(6)]
         public int SolutionFolderId { get; set; }
     }
+
+    [ProtoContract]
+    public class NuGetConfigSolutionFile : SolutionFile
+    {
+
+
+        [ProtoMember(7)]
+        public NuGetFeed NuGetFeed { get; set; }
+        [ProtoMember(8)]
+        public int NuGetFeedId { get; set; }
+    }
 }

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>DevOps.Abstractions.SourceCode.Solutions.MarkdownFiles</AssemblyName>
+    <RootNamespace>DevOps.Abstractions.SourceCode.Solutions.MarkdownFiles</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Contains .md Markdown document file abstractions</Description>
+    <Authors>Chris Dorst</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abstractions.SourceCode.Solutions\Abstractions.SourceCode.Solutions.csproj" />
+  </ItemGroup>
+
+</Project>

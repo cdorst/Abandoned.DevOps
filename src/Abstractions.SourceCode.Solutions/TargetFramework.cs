@@ -6,21 +6,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DevOps.Abstractions.SourceCode.Solutions
 {
     [ProtoContract]
-    [Table("NuGetFeeds", Schema = nameof(SourceCode))]
-    public class NuGetFeed
+    [Table("TargetFrameworks", Schema = nameof(SourceCode))]
+    public class TargetFramework
     {
         [Key]
         [ProtoMember(1)]
-        public int NuGetFeedId { get; set; }
+        public int TargetFrameworkId { get; set; }
 
         [ProtoMember(2)]
         public AsciiStringReference Name { get; set; }
         [ProtoMember(3)]
         public int NameId { get; set; }
 
-        [ProtoMember(4)]
-        public Solution Solution { get; set; }
-        [ProtoMember(5)]
-        public int SolutionId { get; set; }
+        public string GetName() => Name.Value;
     }
 }

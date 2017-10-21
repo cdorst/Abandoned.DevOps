@@ -25,7 +25,7 @@ namespace DevOps.Abstractions.SourceCode.Solutions.EntityFramework
         private void AddIndexes(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NuGetFeed>()
-                .HasIndex(e => new { e.NameId, e.SolutionId }).IsUnique();
+                .HasIndex(e => new { e.ValueId, e.SolutionId }).IsUnique();
             modelBuilder.Entity<Project>()
                 .HasIndex(e => new { e.NameId, e.SolutionFolderId }).IsUnique();
             modelBuilder.Entity<ProjectFile>()

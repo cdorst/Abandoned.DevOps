@@ -32,5 +32,11 @@ namespace DevOps.Abstractions.SourceCode.Solutions
         public List<Project> Projects { get; set; }
         [ProtoMember(8)]
         public List<SolutionFile> SolutionFiles { get; set; }
+
+        public string GetSlnProjectDeclaration()
+            => SlnDeclarations.GetProjectDeclaration(SlnGuidTypes.Folder,
+                name: Name.Value,
+                path: Name.Value,
+                guid: Guid.Value);
     }
 }

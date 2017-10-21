@@ -9,7 +9,11 @@ namespace DevOps.Abstractions.UniqueStrings
     public class UnicodeStringReference
     {
         public UnicodeStringReference() { }
-        public UnicodeStringReference(string input) { Value = input; }
+        public UnicodeStringReference(string input)
+        {
+            if (input == null) input = string.Empty;
+            Value = input;
+        }
         [Key]
         [ProtoMember(1)]
         public int UnicodeStringReferenceId { get; set; }

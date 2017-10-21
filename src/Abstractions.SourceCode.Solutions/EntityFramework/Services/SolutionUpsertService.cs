@@ -31,7 +31,7 @@ namespace DevOps.Abstractions.SourceCode.Solutions.EntityFramework.Services
 
         protected override Task<Solution> AssignComputedProperties(Solution record)
         {
-            if (record.Guid == null) record.Guid = Guid.NewGuid();
+            if (record.Guid == null) record.Guid = SlnGuidTypes.Solution;
             return Task.FromResult(record);
         }
 

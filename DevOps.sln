@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B6F8419A-E5E8-41EB-9929-D58F803F0BA9}"
 EndProject
@@ -30,6 +30,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstractions.SourceCode.VueJs", "src\Abstractions.SourceCode.VueJs\Abstractions.SourceCode.VueJs.csproj", "{DE35F586-9B28-4997-98B9-E65F588F5D3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions.SourceCode.Solutions.NuGetConfigs", "src\Abstractions.SourceCode.Solutions.NuGetConfigs\Abstractions.SourceCode.Solutions.NuGetConfigs.csproj", "{DD279E86-B09C-4422-9648-B68D1040EEAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions.SourceCode.Solutions.MarkdownFiles", "src\Abstractions.SourceCode.Solutions.MarkdownFiles\Abstractions.SourceCode.Solutions.MarkdownFiles.csproj", "{038FCCBE-E591-4B69-93BF-4B5133C632B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions.SourceCode.Projects", "src\Abstractions.SourceCode.Projects\Abstractions.SourceCode.Projects.csproj", "{F9079FAA-3B13-4C9E-8EEA-234745CAE0F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +83,18 @@ Global
 		{DE35F586-9B28-4997-98B9-E65F588F5D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE35F586-9B28-4997-98B9-E65F588F5D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE35F586-9B28-4997-98B9-E65F588F5D3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD279E86-B09C-4422-9648-B68D1040EEAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD279E86-B09C-4422-9648-B68D1040EEAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD279E86-B09C-4422-9648-B68D1040EEAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD279E86-B09C-4422-9648-B68D1040EEAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{038FCCBE-E591-4B69-93BF-4B5133C632B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038FCCBE-E591-4B69-93BF-4B5133C632B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038FCCBE-E591-4B69-93BF-4B5133C632B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038FCCBE-E591-4B69-93BF-4B5133C632B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9079FAA-3B13-4C9E-8EEA-234745CAE0F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9079FAA-3B13-4C9E-8EEA-234745CAE0F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9079FAA-3B13-4C9E-8EEA-234745CAE0F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9079FAA-3B13-4C9E-8EEA-234745CAE0F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +110,9 @@ Global
 		{042A00EE-4E04-4823-B820-BF78ABF3F6A1} = {B6F8419A-E5E8-41EB-9929-D58F803F0BA9}
 		{62A88FA5-FED7-41E9-838C-341E04BA5D68} = {B6F8419A-E5E8-41EB-9929-D58F803F0BA9}
 		{DE35F586-9B28-4997-98B9-E65F588F5D3B} = {B6F8419A-E5E8-41EB-9929-D58F803F0BA9}
+		{DD279E86-B09C-4422-9648-B68D1040EEAA} = {B6F8419A-E5E8-41EB-9929-D58F803F0BA9}
+		{038FCCBE-E591-4B69-93BF-4B5133C632B2} = {B6F8419A-E5E8-41EB-9929-D58F803F0BA9}
+		{F9079FAA-3B13-4C9E-8EEA-234745CAE0F5} = {B6F8419A-E5E8-41EB-9929-D58F803F0BA9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B19B3196-49FA-4C47-84DA-FE2586E5CCC8}

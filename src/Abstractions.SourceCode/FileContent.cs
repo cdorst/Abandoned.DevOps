@@ -3,6 +3,7 @@ using ProtoBuf;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace DevOps.Abstractions.SourceCode
 {
@@ -10,11 +11,15 @@ namespace DevOps.Abstractions.SourceCode
     [Table("FileContents", Schema = nameof(SourceCode))]
     public class FileContent
     {
-        public FileContent() { }
-        public FileContent(string content)
+        public FileContent() { DateAdded = DateTimeOffset.UtcNow; }
+        public FileContent(string content) : this()
         {
             Content = new UnicodeMaxStringReference(content);
-            DateAdded = DateTimeOffset.UtcNow;
+        }
+        public FileContent(StringBuilder stringBuilder) : this()
+        {
+            Content = new UnicodeMaxStringReference(
+                stringBuilder ?? throw new ArgumentNullException(nameof(stringBuilder)));
         }
 
         [Key]

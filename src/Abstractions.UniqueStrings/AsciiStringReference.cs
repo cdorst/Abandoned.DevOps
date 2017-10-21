@@ -9,7 +9,11 @@ namespace DevOps.Abstractions.UniqueStrings
     public class AsciiStringReference
     {
         public AsciiStringReference() { }
-        public AsciiStringReference(string input) { Value = input; }
+        public AsciiStringReference(string input)
+        {
+            if (input == null) input = string.Empty;
+            Value = input;
+        }
         [Key]
         [ProtoMember(1)]
         public int AsciiStringReferenceId { get; set; }

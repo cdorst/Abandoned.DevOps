@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>DevOps.Abstractions.SourceCode.Solutions.NuGetConfigs</AssemblyName>
+    <RootNamespace>DevOps.Abstractions.SourceCode.Solutions.NuGetConfigs</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Contains nuget.config NuGet package feed configuration abstractions</Description>
+    <Authors>Chris Dorst</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Abstractions.SourceCode.Solutions.MarkdownFiles\Abstractions.SourceCode.Solutions.MarkdownFiles.csproj" />
+  </ItemGroup>
+
+</Project>
